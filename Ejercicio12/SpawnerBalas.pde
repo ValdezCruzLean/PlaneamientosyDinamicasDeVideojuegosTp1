@@ -1,5 +1,5 @@
 class SpawnerBalas{
-   private int cantidadBalas;
+  private int cantidadBalas;
   private Bala[] balas;
   
   public SpawnerBalas(){

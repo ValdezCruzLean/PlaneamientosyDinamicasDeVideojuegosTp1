@@ -1,18 +1,19 @@
-private Tanque miTanque;
-private Escenario miEscenario;
-private TanqueEnemigo tanqueEnemigo;
-private JoyPad joyPad;
-private SpawnerBalas spawner;
-void setup() {
-  size(600, 600);
+  private Tanque miTanque;
+  private Escenario miEscenario;
+  private TanqueEnemigo tanqueEnemigo;
+  private JoyPad joyPad;
+  private SpawnerBalas spawner;
+  
+  void setup() {
+    size(600, 600);
    spawner = new SpawnerBalas(1000);
-  miTanque = new Tanque(new PVector(300, 450));
-  miEscenario = new Escenario();
-  tanqueEnemigo = new TanqueEnemigo(new PVector(300, 100));
-  joyPad = new JoyPad();
-}
+   miTanque = new Tanque(new PVector(300, 450));
+   miEscenario = new Escenario();
+   tanqueEnemigo = new TanqueEnemigo(new PVector(300, 100));
+   joyPad = new JoyPad();
+  }
 
-void draw() {
+  void draw() {
   
   miEscenario.display();
   tanqueEnemigo.display();
@@ -35,36 +36,37 @@ void draw() {
   }
    spawner.actualizarBalas();
   
-  // Dibujar texto
-  fill(0, 0, 255);
-  textSize(20);
+    // Dibujar texto
+    fill(0, 0, 0);
+    textSize(30);
   if (esVisible) {
-    text("Es detectado", 10, 20);
+    text("Enemigo detectado", 10, 20);
   } else {
-    text("No es detectado", 10, 20);
+        fill(255, 255, 255);
+    text("No se a detectado ningun enemigo ", 10, 20);
   }
 }
 
-boolean validarRangoDeVision() {
-  return miTanque.esVisible(tanqueEnemigo);
-}
+  boolean validarRangoDeVision() {
+    return miTanque.esVisible(tanqueEnemigo);
+  }
 
-void displayVectores() {
-  PVector direccionVector= PVector.sub(tanqueEnemigo.getPosicion(),miTanque.getPosicion()).normalize().mult(50);
-  strokeWeight(1);
-  stroke(255,0,0);
-  PVector proyeccionDireccionVector = PVector.add(miTanque.getPosicion(),direccionVector); 
-  stroke(#440DFF);//color azul
-   line(miTanque.getPosicion().x,miTanque.getPosicion().y,proyeccionDireccionVector.x,proyeccionDireccionVector.y);
-   strokeWeight(10);
-  point(proyeccionDireccionVector.x,proyeccionDireccionVector.y);
+  void displayVectores() {
+    PVector direccionVector= PVector.sub(tanqueEnemigo.getPosicion(),miTanque.getPosicion()).normalize().mult(50);
+    strokeWeight(1);
+    stroke(255,0,0);
+    PVector proyeccionDireccionVector = PVector.add(miTanque.getPosicion(),direccionVector); 
+    stroke(0,0,255);//color azul
+    line(miTanque.getPosicion().x,miTanque.getPosicion().y,proyeccionDireccionVector.x,proyeccionDireccionVector.y);
+    strokeWeight(10);
+    point(proyeccionDireccionVector.x,proyeccionDireccionVector.y);
   
   switch(miTanque.getDireccion()){
     case 0: { 
       PVector axysVisualizacion = new PVector(0,-1);
       PVector proyeccionAxysVisualizacion = axysVisualizacion.mult(50);
       strokeWeight(1);
-      stroke(#FF0D0D);//color rojo
+      stroke(255,0,0);//color rojo
       line(miTanque.getPosicion().x,miTanque.getPosicion().y,
       miTanque.getPosicion().x + proyeccionAxysVisualizacion.x,
       miTanque.getPosicion().y + proyeccionAxysVisualizacion.y
@@ -77,38 +79,38 @@ void displayVectores() {
   }
 }
 
-void keyPressed() {
-  if (key == 'd' || keyCode == RIGHT) {
-    joyPad.setPresionoDerecha(true);
-  }
-  if (key == 'a' || keyCode == LEFT) {
-    joyPad.setPresionoIzquierda(true);
-  }
-  if (key == 'w' || keyCode == UP) {
-    joyPad.setPresionoArriba(true);
-  }
-  if (key == 's' || keyCode == DOWN) {
-    joyPad.setPresionoAbajo(true);
-  }
-  if(keyCode == ENTER){
-    println("Se presionó la tecla");
-    if(miTanque.esVisible(tanqueEnemigo)){
-    miTanque.disparar(spawner);
-  }
-  }
-}
-
-void keyReleased() {
-  if (key == 'd' || keyCode == RIGHT) {
-    joyPad.setPresionoDerecha(false);
-  }
-  if (key == 'a' || keyCode == LEFT) {
-    joyPad.setPresionoIzquierda(false);
-  }
+  void keyPressed() {
+    if (key == 'd' || keyCode == RIGHT) {
+      joyPad.setPresionoDerecha(true);
+    }
+    if (key == 'a' || keyCode == LEFT) {
+      joyPad.setPresionoIzquierda(true);
+    }
     if (key == 'w' || keyCode == UP) {
-    joyPad.setPresionoArriba(false);
+      joyPad.setPresionoArriba(true);
+    }
+    if (key == 's' || keyCode == DOWN) {
+      joyPad.setPresionoAbajo(true);
+    }
+    if(keyCode == ENTER){
+      println("Se presionó la tecla");
+      if(miTanque.esVisible(tanqueEnemigo)){
+      miTanque.disparar(spawner);
+    }
+    }
   }
-  if (key == 's' || keyCode == DOWN) {
-    joyPad.setPresionoAbajo(false);
+
+  void keyReleased() {
+    if (key == 'd' || keyCode == RIGHT) {
+      joyPad.setPresionoDerecha(false);
+    }
+    if (key == 'a' || keyCode == LEFT) {
+      joyPad.setPresionoIzquierda(false);
+    }
+      if (key == 'w' || keyCode == UP) {
+      joyPad.setPresionoArriba(false);
+    }
+    if (key == 's' || keyCode == DOWN) {
+      joyPad.setPresionoAbajo(false);
+    }
   }
-}

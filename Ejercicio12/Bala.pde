@@ -12,16 +12,14 @@ class Bala{
   
   
   public void mover(){
-    //int framesPorSegundo = (int)frameRate;
-    //float deltaTime = 1.0/framesPorSegundo;
-    
     this.posicion.add(this.velocidad);
   }
   
  
   
   public void display(){
-    stroke(#98FF00);
+    stroke(255,255,0);
+    //ellipse(posicion.x,posicion.y,5,5);
     ellipse(posicion.x,posicion.y,5,10);
   }
   
