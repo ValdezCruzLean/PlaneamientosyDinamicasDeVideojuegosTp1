@@ -92,7 +92,9 @@ void keyPressed() {
   }
   if(keyCode == ENTER){
     println("Se presionó la tecla");
+    if(miTanque.esVisible(tanqueEnemigo)){
     miTanque.disparar(spawner);
+  }
   }
 }
 

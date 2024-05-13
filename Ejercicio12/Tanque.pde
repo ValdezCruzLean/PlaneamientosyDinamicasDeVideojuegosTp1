@@ -16,29 +16,29 @@ class Tanque{
   
   public boolean esVisible (TanqueEnemigo tanqueEnemigo){
     boolean esVisible = false;
-    PVector direccionDeTankEnemyVector = PVector.sub(tanqueEnemigo.getPosicion(),this.posicion);
-    direccionDeTankEnemyVector.normalize();
+    PVector direccionDeTanqueEnemigoVector = PVector.sub(tanqueEnemigo.getPosicion(),this.posicion);
+    direccionDeTanqueEnemigoVector.normalize();
   
-    PVector direcciontoViewVector= new PVector();
+    PVector direccionParaVerVector= new PVector();
   
     switch(this.direccion){
       case 0:{
-        direcciontoViewVector = new PVector(0,-1,0);
+        direccionParaVerVector = new PVector(0,-1,0);
         break;
       }
     }
   
-    float dotProduct = PVector.dot(direcciontoViewVector,direccionDeTankEnemyVector);
+    float dotProduct = PVector.dot(direccionParaVerVector,direccionDeTanqueEnemigoVector);
     if (dotProduct > 0.8){
       esVisible = true;
-      girar(direcciontoViewVector,direccionDeTankEnemyVector);
+      girar(direccionParaVerVector,direccionDeTanqueEnemigoVector);
     }
     return esVisible;
   }
   
-  public void girar(PVector direcciontoViewVector,PVector direccionDeTanqueEnemigoVector){
-    float angulo = PVector.angleBetween(direcciontoViewVector,direccionDeTanqueEnemigoVector);
-    PVector rotacionAxys = direcciontoViewVector.cross(direccionDeTanqueEnemigoVector);
+  public void girar(PVector direccionParaVerVector,PVector direccionDeTanqueEnemigoVector){
+    float angulo = PVector.angleBetween(direccionParaVerVector,direccionDeTanqueEnemigoVector);
+    PVector rotacionAxys = direccionParaVerVector.cross(direccionDeTanqueEnemigoVector);
     int agujaReloj =1;
   
     if (rotacionAxys.z < 0){
