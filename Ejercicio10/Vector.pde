@@ -21,7 +21,11 @@ class Vector{
     line(origen.x,origen.y,destino.x,destino.y);
   }
 
-
+  public void calcularD(){
+    PVector BC = PVector.sub(puntoC, puntoB);
+    puntoD = PVector.add(BC, puntoA);
+    println("El punto D para formar el paralelogramo es igual a "+puntoD);
+  }
 
   public PVector getPuntoA(){
     return puntoA;
