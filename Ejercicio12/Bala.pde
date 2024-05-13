@@ -20,7 +20,7 @@ class Bala{
   
  
   
-  public void dibujar(){
+  public void display(){
     stroke(#98FF00);
     ellipse(posicion.x,posicion.y,5,10);
   }

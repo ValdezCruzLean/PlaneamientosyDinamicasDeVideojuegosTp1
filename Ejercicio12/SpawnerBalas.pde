@@ -1,8 +1,14 @@
 class SpawnerBalas{
+   private int cantidadBalas;
   private Bala[] balas;
   
   public SpawnerBalas(){
-    balas = new Bala[1000];
+    ;
+  }
+  
+    public SpawnerBalas(int cantidadBalas){
+      this.cantidadBalas = cantidadBalas;
+    balas = new Bala[cantidadBalas];
   }
   
   public Bala[] getBalas(){
@@ -17,7 +23,7 @@ class SpawnerBalas{
     for(Bala b:balas){
       if(b!=null){
         b.mover();
-        b.dibujar();
+        b.display();
       }
     }
   }

@@ -5,7 +5,7 @@ private JoyPad joyPad;
 private SpawnerBalas spawner;
 void setup() {
   size(600, 600);
-   spawner = new SpawnerBalas();
+   spawner = new SpawnerBalas(1000);
   miTanque = new Tanque(new PVector(300, 450));
   miEscenario = new Escenario();
   tanqueEnemigo = new TanqueEnemigo(new PVector(300, 100));
