@@ -3,7 +3,7 @@ Escenario miEscenario;
 PVector normal;
 
 void setup() {
-  size(800, 400);
+  size(900, 400);
   pelota = new Pelota(new PVector(width/2, 260), new PVector(3, -2));
   miEscenario = new Escenario();
   normal = new PVector(1, 1).normalize(); // Vector normal de la pared
@@ -23,5 +23,11 @@ void draw() {
     pelota.setVelocidad(nuevaVelocidadX);
   }
   
-
+  if (pelota.getPosicion().y > height -50 || pelota.getPosicion().y < 250) {
+    // Calcula el vector de reflexion en el eje Y
+    PVector reflexionY = new PVector(0, -1);
+    reflexionY.mult(2 * PVector.dot(pelota.getVelocidad(), reflexionY));
+    PVector nuevaVelocidadY = PVector.sub(pelota.getVelocidad(), reflexionY);
+    pelota.setVelocidad(nuevaVelocidadY);
+  }
 }
