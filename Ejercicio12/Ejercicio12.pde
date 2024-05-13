@@ -2,8 +2,10 @@ private Tanque miTanque;
 private Escenario miEscenario;
 private TanqueEnemigo tanqueEnemigo;
 private JoyPad joyPad;
+private SpawnerBalas spawner;
 void setup() {
   size(600, 600);
+   spawner = new SpawnerBalas();
   miTanque = new Tanque(new PVector(300, 450));
   miEscenario = new Escenario();
   tanqueEnemigo = new TanqueEnemigo(new PVector(300, 100));
@@ -20,17 +22,18 @@ void draw() {
   }
   displayVectores();
   if (joyPad.isDerechaPresionado()) {
-    miTanque.move(2); 
+    miTanque.mover(2); 
   }
   if (joyPad.isIzquierdaPresionado()) {
-    miTanque.move(4); 
+    miTanque.mover(4); 
   }
     if (joyPad.isArribaPresionado()) {
-    miTanque.move(1); 
+    miTanque.mover(1); 
   }
   if (joyPad.isAbajoPresionado()) {
-    miTanque.move(3); 
+    miTanque.mover(3); 
   }
+   spawner.actualizarBalas();
   
   // Dibujar texto
   fill(0, 0, 255);
@@ -89,6 +92,7 @@ void keyPressed() {
   }
   if(keyCode == ENTER){
     println("Se presionó la tecla");
+    miTanque.disparar(spawner);
   }
 }
 
