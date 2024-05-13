@@ -31,24 +31,24 @@ class Tanque{
     float dotProduct = PVector.dot(direcciontoViewVector,direccionDeTankEnemyVector);
     if (dotProduct > 0.8){
       esVisible = true;
-      spin(direcciontoViewVector,direccionDeTankEnemyVector);
+      girar(direcciontoViewVector,direccionDeTankEnemyVector);
     }
     return esVisible;
   }
   
-  public void spin(PVector direcciontoViewVector,PVector direccionDeTanqueEnemigoVector){
-    float angle = PVector.angleBetween(direcciontoViewVector,direccionDeTanqueEnemigoVector);
-    PVector rotationAxys = direcciontoViewVector.cross(direccionDeTanqueEnemigoVector);
-    int clockWise =1;
+  public void girar(PVector direcciontoViewVector,PVector direccionDeTanqueEnemigoVector){
+    float angulo = PVector.angleBetween(direcciontoViewVector,direccionDeTanqueEnemigoVector);
+    PVector rotacionAxys = direcciontoViewVector.cross(direccionDeTanqueEnemigoVector);
+    int agujaReloj =1;
   
-    if (rotationAxys.z < 0){
-      clockWise=-1;
+    if (rotacionAxys.z < 0){
+      agujaReloj=-1;
     }
   
     pushMatrix();
     imageMode(CENTER);
     translate(this.posicion.x,this.posicion.y);
-    rotate(angle*clockWise);
+    rotate(angulo*agujaReloj);
     image(this.imagen,0,0,this.imagen.width* 0.10,this.imagen.height* 0.10);
     popMatrix();
   }
@@ -69,7 +69,21 @@ class Tanque{
     return this.direccion;
   }
   
-
+  public void disparar(SpawnerBalas spawner){
+    
+  PVector direccionVector= PVector.sub(tanqueEnemigo.getPosicion(),miTanque.getPosicion()).normalize().mult(50);
+  PVector proyeccionDireccionVector = PVector.add(miTanque.getPosicion(),direccionVector); 
+ 
+    Bala unaBala = new Bala(new PVector(this.posicion.x,this.posicion.y),proyeccionDireccionVector);
+    Bala[] balas = spawner.getBalas();
+    for(int i=0;i<balas.length;i++){
+      if(balas[i]==null){
+        balas[i]=unaBala;
+        break;
+      }
+    }
+    spawner.setBalas(balas);
+  }
   
   public void display(){
     pushMatrix();
@@ -80,7 +94,7 @@ class Tanque{
     popMatrix();
   }
   
-  void move(int direccion) {
+  void mover(int direccion) {
     switch (direccion) {
       case 1: // Arriba
         posicion.y -= velocidad.y;
