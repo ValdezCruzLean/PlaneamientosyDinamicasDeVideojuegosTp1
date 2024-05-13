@@ -1,5 +1,16 @@
 class Vector{
+  private PVector origen;
+  private PVector destino; 
+  private PVector puntoA = new PVector(-10, -20);
+  private PVector puntoB = new PVector(40, -10);
+  private PVector puntoC = new PVector(50, 20);
+  private PVector puntoD;
 
+  public Vector(){
+    origen = new PVector();
+    destino= new PVector();
+    calcularD();
+  }
 
   public Vector(PVector origen, PVector destino){
     this.origen = origen;
