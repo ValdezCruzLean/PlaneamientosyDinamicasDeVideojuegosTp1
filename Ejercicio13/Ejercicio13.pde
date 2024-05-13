@@ -1,14 +1,17 @@
 Pelota pelota;
+Escenario miEscenario;
 PVector normal;
 
 void setup() {
   size(800, 400);
   pelota = new Pelota(new PVector(width/2, 260), new PVector(3, -2));
+  miEscenario = new Escenario();
   normal = new PVector(1, 1).normalize(); // Vector normal de la pared
 }
 
 void draw() {
   background(255);
+  miEscenario.display();
   pelota.display();
   pelota.mover();
   /* Comprueba si la pelota ha alcanzado los limites y la refleja */
