@@ -1,11 +1,17 @@
-
+private Vector vector1;
+private Vector vector2;
+private Vector vector3;
+private Vector vector4;
 
 
 
 public void setup(){
   size(700,700);
 
- 
+  vector1= new Vector (puntoA,puntoB);
+  vector2= new Vector (puntoB,puntoC);
+  vector3= new Vector (puntoC,puntoD);
+  vector4= new Vector (puntoD,puntoA);
 
 
 }
