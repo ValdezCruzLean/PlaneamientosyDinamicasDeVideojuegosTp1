@@ -2,6 +2,11 @@ private Vector vector1;
 private Vector vector2;
 private Vector vector3;
 private Vector vector4;
+private Vector miVector = new Vector();
+private PVector puntoA = miVector.getPuntoA();
+private PVector puntoB = miVector.getPuntoB();
+private PVector puntoC = miVector.getPuntoC();
+private PVector puntoD = miVector.getPuntoD();
 
 
 
