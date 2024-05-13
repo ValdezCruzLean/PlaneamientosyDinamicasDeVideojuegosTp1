@@ -5,6 +5,8 @@ private PVector posicionBrowser;
 private PImage imagenBrowser;
 private PImage imagenMario;
 private Escenario miEscenario;
+private Fuego fuego;
+private PVector posicionFuego;
 
 public void setup(){
 size(500,500);
@@ -12,6 +14,7 @@ vectorBrowser = new Vector(new PVector(0,0), new PVector(10,0));
 vectorMario = new Vector(new PVector(0,0),new PVector(0,40));
 vectorMarioBrowser= new Vector();
 miEscenario= new Escenario();
+posicionFuego = new PVector(width/2,height/2);
 
 }
 
@@ -27,7 +30,10 @@ vectorBrowser.getDestino().normalize();
 vectorBrowser.display();
 dibujarVectorMarioeBrowser();
 escribirMensaje();
-
+ if (fuego != null) {
+  fuego.mover();
+  
+}
 }
 
 
@@ -59,6 +65,7 @@ public void escribirMensaje(){
   text(dotProduct,180,130);
   if(dotProduct > 0.866  ){
   text(" Mario fue detectado ",125,100);
+fuego = new Fuego(posicionFuego,new PVector(10,0));
    
 }else{
 
