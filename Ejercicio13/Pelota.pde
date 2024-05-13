@@ -2,15 +2,17 @@ class Pelota{
 
 private PVector posicion;
 private PVector velocidad;
+private PImage imagen;
 
   public Pelota(PVector posicion,PVector velocidad){
     this.posicion=posicion;
     this.velocidad=velocidad;
+    this.imagen=loadImage("Pelota.png");
 
   }
   public void display(){
-    fill(255,0,0);
-    ellipse(this.posicion.x,this.posicion.x,50,50);
+  imagen.resize(60,60);
+   image(imagen,posicion.x,posicion.y);
 }
 
 public void mover(){
